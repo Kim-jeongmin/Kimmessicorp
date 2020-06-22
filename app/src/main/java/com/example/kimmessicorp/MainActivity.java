@@ -21,6 +21,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private long time= 0;
     private TextView tv_id;
     private DrawerLayout drawerLayout;
     private View drawerView;
@@ -157,4 +158,15 @@ public class MainActivity extends AppCompatActivity {
 
         }
     };
+
+    //뒤로가기 버튼을 두번누르면 종료
+    @Override
+    public void onBackPressed(){
+        if (System.currentTimeMillis() - time >= 2000) {
+            time = System.currentTimeMillis();
+            Toast.makeText(getApplicationContext(), "뒤로가기 버튼을 한번 더 누르면 종료합니다.", Toast.LENGTH_SHORT).show();
+        } else if (System.currentTimeMillis() - time < 2000) {
+            finish();
+        }
+    }
 }
